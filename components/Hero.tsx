@@ -62,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ lang, theme }) => {
               theme === 'dark' ? 'border-white/5 bg-white/5' : 'border-black/5 bg-black/5'
             }`}>
               <img 
-                src="componets/photo_2026-02-02_14-26-24.jpg"
+                src="https://github.com/mrroot17/portfolio/blob/main/components/photo_2026-02-02_14-26-24.jpg?raw=true"
                 alt="Ozodbek Nodirov" 
                 className="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-[1.04] group-hover:opacity-80 transition-all duration-[1200ms] ease-out"
               />
