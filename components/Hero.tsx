@@ -10,8 +10,8 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ lang, theme }) => {
   const content = {
     uz: {
-      welcome: 'Xush kelibsiz',
-      subtext: "Har kimning axloqi aslida kim ekanligini ko'rsatib beradi, shuning sababiyati ila axloqingizni go'zal qiling! Shuni unutmangki axloqingiz ila qalblarda(n) qolursiz!",
+      welcome: 'Salom men Ozodbek, Xush kelibsiz!',
+      subtext: "Frontend dasturlash va zamonaviy texnologiyalarga qiziqqan ijodkor yosh o'rganuvchiman. Web-saytlar yaratish, turli xil dizaynlarni tayyorlash va kiberxavsizlikka qiziqaman. Hozirda Farg'ona Davlat Texnika Universitetining Kiberxavsizlik yo'nalishida 2-kurs bosqichida tahsil olmoqdaman.Har kimning axloqi aslida kim ekanligini ko'rsatib beradi, shuning sababiyati ila axloqingizni go'zal qiling! Shuni unutmangki axloqingiz ila qalblarda(n) qolursiz!",
       button: 'Bog\'lanish'
     },
     en: {
