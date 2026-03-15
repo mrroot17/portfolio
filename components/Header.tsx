@@ -41,8 +41,8 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
         }`}
         >
         <img
-        src="https://github.com/mrroot17/portfolio/blob/main/components/image.png?raw=true"
-        alt="Ozodbek Nodirov logo"
+        src="components/image.png"
+        alt="Ozodbek Nodirov"
         className="
         h-12 md:h-14
         w-auto
