@@ -9,7 +9,7 @@ interface ContactProps {
 
 const socials = [
   { name: 'Telegram', href: 'https://t.me/nodirov_ozodbek', label: 'Mr NODIROV' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ozodbek-nodirov-2419233a7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'Nodirov Ozodbek ' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ozodbek-nodirov-2419233a7', label: 'Nodirov Ozodbek' },
   { name: 'YouTube', href: 'https://www.youtube.com/@nodirov_ozodbek', label: 'Nodirov Ozodbek' },
   { name: 'TikTok', href: 'https://www.tiktok.com/@nodirov_ozodbek', label: 'Nodirov Ozodbek' },
 ];
@@ -77,6 +77,9 @@ const Contact: React.FC<ContactProps> = ({ lang, theme }) => {
                 <a 
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${social.name}: ${social.label}`}
                   className={`group flex items-center justify-between py-2 border-b transition-all duration-500 ${theme === 'dark' ? 'border-white/5 hover:border-[#4CA1AF]/50' : 'border-black/5 hover:border-[#4CA1AF]/50'}`}
                 >
                   <span className={`text-xs font-bold uppercase tracking-[0.2em] transition-colors ${theme === 'dark' ? 'text-zinc-400 group-hover:text-white' : 'text-slate-500 group-hover:text-slate-900'}`}>

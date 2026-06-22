@@ -10,12 +10,33 @@ import Sparkles from './components/Sparkles';
 export type Language = 'uz' | 'en';
 export type Theme = 'dark' | 'light';
 
-const App: React.FC = () => {
-  const [lang, setLang] = useState<Language>('uz');
-  const [theme, setTheme] = useState<Theme>('dark');
+const getInitialLang = (): Language => {
+  if (typeof window === 'undefined') return 'uz';
+  const saved = window.localStorage.getItem('lang');
+  return saved === 'en' || saved === 'uz' ? saved : 'uz';
+};
 
-  // Apply theme to body
+const getInitialTheme = (): Theme => {
+  if (typeof window === 'undefined') return 'dark';
+  const saved = window.localStorage.getItem('theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  // Fall back to the user's OS-level preference
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+};
+
+const App: React.FC = () => {
+  const [lang, setLang] = useState<Language>(getInitialLang);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  // Persist language and keep <html lang> in sync for SEO/accessibility
   useEffect(() => {
+    window.localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  // Apply theme to body and persist the choice
+  useEffect(() => {
+    window.localStorage.setItem('theme', theme);
     if (theme === 'light') {
       document.body.classList.add('light');
       document.body.style.setProperty('--bg-color', '#F8FAFC');

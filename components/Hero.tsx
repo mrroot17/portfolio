@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Language, Theme } from '../App';
+import profilePhoto from './photo_2026-02-02_14-26-24.jpg';
 
 interface HeroProps {
   lang: Language;
@@ -11,13 +12,14 @@ const Hero: React.FC<HeroProps> = ({ lang, theme }) => {
   const content = {
     uz: {
       welcome: 'Xush kelibsiz!',
-      subtext: "Frontend dasturlash va zamonaviy texnologiyalarga qiziqqan ijodkor yosh o'rganuvchiman. Web-saytlar yaratish, turli xil dizaynlarni tayyorlash va kiberxavsizlikka qiziqaman. Hozirda Farg'ona Davlat Texnika Universitetining Kiberxavsizlik yo'nalishida 2-kurs bosqichida tahsil olmoqdaman.",
-      subtext: "Har kimning axloqi aslida kim ekanligini ko'rsatib beradi, shuning sababiyati ila axloqingizni go'zal qiling! Shuni unutmangki axloqingiz ila qalblarda(n) qolursiz!",
+      bio: "Frontend dasturlash va zamonaviy texnologiyalarga qiziqqan ijodkor yosh o'rganuvchiman. Web-saytlar yaratish, turli xil dizaynlarni tayyorlash va kiberxavfsizlikka qiziqaman. Hozirda Farg'ona Davlat Texnika Universitetining Kiberxavfsizlik yo'nalishida 2-kurs bosqichida tahsil olmoqdaman.",
+      quote: "Har kimning axloqi aslida kim ekanligini ko'rsatib beradi, shuning uchun axloqingizni go'zal qiling! Shuni unutmangki, axloqingiz ila qalblarda qolasiz!",
       button: 'Bog\'lanish'
     },
     en: {
       welcome: 'Welcome',
-      subtext: "A person’s character ultimately reveals their true identity; therefore, strive to refine and beautify your character. Remember that it is through your character that you leave a lasting place in people’s hearts.",
+      bio: "A creative young learner passionate about frontend development and modern technologies. I enjoy building websites, crafting various designs, and exploring cybersecurity. Currently a 2nd-year Cybersecurity student at Fergana State Technical University.",
+      quote: "A person’s character ultimately reveals their true identity; therefore, strive to refine and beautify your character. Remember that it is through your character that you leave a lasting place in people’s hearts.",
       button: 'Get in Touch'
     }
   }[lang];
@@ -37,8 +39,11 @@ const Hero: React.FC<HeroProps> = ({ lang, theme }) => {
             Ozodbek <br />
             <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme === 'dark' ? 'from-white via-white' : 'from-slate-900 via-slate-800'} to-[#4CA1AF]/40`}>Nodirov</span>
           </h1>
-          <p className={`text-base md:text-xl font-light max-w-lg tracking-wide leading-relaxed italic animate-fade-up delay-300 ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
-            {content.subtext}
+          <p className={`text-base md:text-lg font-light max-w-lg tracking-wide leading-relaxed animate-fade-up delay-300 ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
+            {content.bio}
+          </p>
+          <p className={`mt-5 text-sm md:text-base font-light max-w-lg tracking-wide leading-relaxed italic animate-fade-up delay-500 ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}`}>
+            “{content.quote}”
           </p>
           
           <div className="mt-12 md:mt-16 animate-fade-up delay-500">
@@ -63,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ lang, theme }) => {
               theme === 'dark' ? 'border-white/5 bg-white/5' : 'border-black/5 bg-black/5'
             }`}>
               <img 
-                src="https://github.com/mrroot17/portfolio/blob/main/components/photo_2026-02-02_14-26-24.jpg"
+                src={profilePhoto}
                 alt="Ozodbek Nodirov" 
                 className="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-[1.04] group-hover:opacity-80 transition-all duration-[1200ms] ease-out"
               />

@@ -18,6 +18,7 @@ const Sparkles: React.FC<SparklesProps> = ({ theme }) => {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
+    let resizeTimer: number;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -80,13 +81,23 @@ const Sparkles: React.FC<SparklesProps> = ({ theme }) => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('resize', resize);
+    // Debounced resize: recompute canvas size AND particle density
+    const handleResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        resize();
+        init();
+      }, 150);
+    };
+
+    window.addEventListener('resize', handleResize);
     resize();
     init();
     animate();
 
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
+      window.clearTimeout(resizeTimer);
       cancelAnimationFrame(animationFrameId);
     };
   }, [theme]);
