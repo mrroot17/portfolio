@@ -13,13 +13,19 @@ const Footer: React.FC<FooterProps> = ({ lang, theme }) => {
   const content = {
     uz: {
       quote: 'Sokin dizayn va kuchli brending asosi.',
-      privacy: 'Maxfiylik',
-      terms: 'Shartlar'
+      nav: [
+        { name: 'Men haqimda', href: '#about' },
+        { name: 'Aloqa', href: '#contact' },
+        { name: 'Yuqoriga', href: '#hero' },
+      ],
     },
     en: {
       quote: 'Foundation of quiet design and strong branding.',
-      privacy: 'Privacy',
-      terms: 'Terms'
+      nav: [
+        { name: 'About', href: '#about' },
+        { name: 'Contact', href: '#contact' },
+        { name: 'Top', href: '#hero' },
+      ],
     }
   }[lang];
 
@@ -37,10 +43,17 @@ const Footer: React.FC<FooterProps> = ({ lang, theme }) => {
             {content.quote}
           </div>
           
-          <div className="flex gap-6 md:gap-10">
-            <a href="#" className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 hover:text-[#4CA1AF] transition-colors">{content.privacy}</a>
-            <a href="#" className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 hover:text-[#4CA1AF] transition-colors">{content.terms}</a>
-          </div>
+          <nav aria-label="Pastki navigatsiya" className="flex gap-6 md:gap-10">
+            {content.nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 hover:text-[#4CA1AF] transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

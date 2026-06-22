@@ -1,20 +1,69 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Ozodbek Nodirov — Personal Portfolio
 
-# Run and deploy your AI Studio app
+Premium, minimalist one-page personal brand website built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS**. It features an editorial design, light/dark themes, bilingual content (Uzbek / English), an animated particle background, and scroll-reveal interactions.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/temp/4
+- Bilingual UI (UZ / EN) with the choice persisted in `localStorage`
+- Light & dark themes that respect the OS preference and persist across visits
+- Animated canvas particle background that adapts to the active theme
+- Scroll-reveal animations via `IntersectionObserver`
+- Responsive, accessible layout (ARIA labels, keyboard-friendly navigation)
+- SEO-ready: meta description, Open Graph and Twitter cards, favicon
 
-## Run Locally
+## Tech Stack
 
-**Prerequisites:**  Node.js
+| Area        | Technology              |
+| ----------- | ----------------------- |
+| Framework   | React 19                |
+| Language    | TypeScript              |
+| Build tool  | Vite 6                  |
+| Styling     | Tailwind CSS 3 + PostCSS |
 
+## Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+**Prerequisites:** [Node.js](https://nodejs.org/) 18+ and npm.
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start the development server (http://localhost:3000)
+npm run dev
+
+# 3. Create an optimized production build
+npm run build
+
+# 4. Preview the production build locally
+npm run preview
+```
+
+## Project Structure
+
+```
+.
+├── index.html          # HTML entry point + SEO meta tags
+├── index.tsx           # React entry point
+├── index.css           # Tailwind directives + global styles
+├── App.tsx             # Root component (theme & language state)
+├── components/
+│   ├── Header.tsx      # Navigation, theme & language switchers
+│   ├── Hero.tsx        # Intro section with profile photo
+│   ├── About.tsx       # Philosophy section
+│   ├── Contact.tsx     # Email, phone & social links
+│   ├── Footer.tsx      # Footer with quick navigation
+│   └── Sparkles.tsx    # Animated particle background
+├── tailwind.config.js
+├── postcss.config.js
+└── vite.config.ts
+```
+
+## Customization
+
+- **Content / translations:** edit the `content` objects inside each component (`uz` and `en` keys).
+- **Brand colors:** update `accent` (`#4CA1AF`) and `ink` (`#2C3E50`) in `tailwind.config.js` and the CSS variables in `index.css`.
+- **Profile image & logo:** replace `components/photo_2026-02-02_14-26-24.jpg` and `components/image.png`.
+
+## License
+
+Personal project © Ozodbek Nodirov. All rights reserved.

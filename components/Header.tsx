@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Language, Theme } from '../App';
+import logo from './image.png';
 
 interface HeaderProps {
   lang: Language;
@@ -41,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
         }`}
         >
         <img
-        src="https://github.com/mrroot17/portfolio/blob/main/components/image.png"
+        src={logo}
         alt="Ozodbek Nodirov"
         className="
         h-12 md:h-14
@@ -75,27 +76,31 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
             {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              aria-label={theme === 'dark' ? "Yorug' rejimga o'tish" : "Tungi rejimga o'tish"}
+              title={theme === 'dark' ? "Yorug' rejim" : 'Tungi rejim'}
               className={`p-2 rounded-full glass border transition-all duration-500 hover:scale-110 active:scale-90 ${
                 theme === 'dark' ? 'border-white/10 text-yellow-400' : 'border-black/10 text-slate-700'
               }`}
             >
               {theme === 'dark' ? (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" />
                 </svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                 </svg>
               )}
             </button>
 
             {/* Language Switcher */}
-            <div className={`flex items-center glass p-1 rounded-full border backdrop-blur-md transition-colors ${
+            <div role="group" aria-label="Tilni tanlash" className={`flex items-center glass p-1 rounded-full border backdrop-blur-md transition-colors ${
               theme === 'dark' ? 'border-white/10' : 'border-black/10'
             }`}>
               <button
                 onClick={() => setLang('uz')}
+                aria-pressed={lang === 'uz'}
+                aria-label="O'zbek tili"
                 className={`text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-500 ${
                   lang === 'uz' ? 'bg-[#4CA1AF] text-white shadow-lg shadow-[#4CA1AF]/20' : (theme === 'dark' ? 'text-zinc-500 hover:text-zinc-300' : 'text-slate-400 hover:text-slate-600')
                 }`}
@@ -104,6 +109,8 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
               </button>
               <button
                 onClick={() => setLang('en')}
+                aria-pressed={lang === 'en'}
+                aria-label="English language"
                 className={`text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-500 ${
                   lang === 'en' ? 'bg-[#4CA1AF] text-white shadow-lg shadow-[#4CA1AF]/20' : (theme === 'dark' ? 'text-zinc-500 hover:text-zinc-300' : 'text-slate-400 hover:text-slate-600')
                 }`}
@@ -116,6 +123,9 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Menyuni yopish' : 'Menyuni ochish'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
             className="md:hidden flex flex-col space-y-2 cursor-pointer group z-50 p-2"
           >
             <span className={`w-8 h-[1px] transition-all duration-500 ${theme === 'dark' ? 'bg-white' : 'bg-slate-800'} ${isMenuOpen ? 'rotate-45 translate-y-[4.5px]' : ''}`}></span>
@@ -125,7 +135,11 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
       </div>
 
       {/* Mobile Navigation Dropdown */}
-      <div className={`fixed inset-0 z-[40] flex flex-col items-center justify-center space-y-12 transition-all duration-700 md:hidden ${
+      <nav
+        id="mobile-nav"
+        aria-label="Asosiy navigatsiya (mobil)"
+        aria-hidden={!isMenuOpen}
+        className={`fixed inset-0 z-[40] flex flex-col items-center justify-center space-y-12 transition-all duration-700 md:hidden ${
         theme === 'dark' ? 'bg-[#2C3E50]' : 'bg-slate-50'
       } ${
         isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
@@ -135,6 +149,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
             key={item.name}
             href={item.href}
             onClick={() => setIsMenuOpen(false)}
+            tabIndex={isMenuOpen ? 0 : -1}
             className={`text-2xl font-serif font-bold tracking-widest uppercase transition-colors ${
               theme === 'dark' ? 'text-white hover:text-[#4CA1AF]' : 'text-slate-900 hover:text-[#4CA1AF]'
             }`}
@@ -142,7 +157,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang, theme, setTheme }) => {
             {item.name}
           </a>
         ))}
-      </div>
+      </nav>
     </header>
   );
 };
